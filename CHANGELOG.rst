@@ -1,10 +1,20 @@
-1.6.3 - Unreleased
-------------------
+1.6.3 - July 15, 2021
+---------------------
 
+* feat: :meth:`.Table.from_csv` accepts a ``row_limit`` keyword argument. (#740)
 * feat: :meth:`.Table.from_json` accepts an ``encoding`` keyword argument. (#734)
-* feat: :class:`.Max` works with :class:`.TimeDelta`. (#735)
-* fix: :class:`.Mean` returns ``None`` if there are no values to average. (#706)
+* feat: :meth:`.Table.print_html` accepts a ``max_precision`` keyword argument, like :meth:`.Table.print_table`. (#753)
+* feat: :class:`.TypeTester` accepts a ``null_values`` keyword argument, like individual data types. (#745)
+* feat: :class:`.Min`, :class:`.Max` and :class:`.Sum` (#735) work with :class:`.TimeDelta`.
+* feat: :class:`.FieldSizeLimitError` includes the line number in the error message. (#681)
+* feat: :class:`.csv.Sniffer` warns on error while sniffing CSV dialect.
+* fix: :meth:`.Table.normalize` works with basic processing methods. (#691)
+* fix: :meth:`.Table.homogenize` works with basic processing methods. (#756)
+* fix: :meth:`.Table.homogenize` casts ``compare_values`` and ``default_row``. (#700)
 * fix: :meth:`.Table.homogenize` accepts tuples. (#710)
+* fix: :meth:`.TableSet.group_by` accepts input with no rows. (#703)
+* fix: :class:`.TypeTester` warns if a column specified by the ``force`` argument is not in the table, instead of raising an error. (#747)
+* fix: Aggregations return ``None`` if all values are ``None``, instead of raising an error. Note that ``Sum``, ``MaxLength`` and ``MaxPrecision`` continue to return ``0`` if all values are ``None``. (#706)
 * fix: Ensure files are closed when errors occur. (#734)
 * build: Make PyICU an optional dependency.
 

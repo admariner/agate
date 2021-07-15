@@ -61,7 +61,7 @@ class TestTableSet(AgateTestCase):
         ])
 
         with self.assertRaises(ValueError):
-            tableset = TableSet(tables.values(), tables.keys())  # noqa
+            TableSet(tables.values(), tables.keys())
 
     def test_create_tableset_mismatched_column_types(self):
         tables = OrderedDict([
@@ -71,7 +71,7 @@ class TestTableSet(AgateTestCase):
         ])
 
         with self.assertRaises(ValueError):
-            tableset = TableSet(tables.values(), tables.keys())  # noqa
+            TableSet(tables.values(), tables.keys())
 
     def test_iter(self):
         tableset = TableSet(self.tables.values(), self.tables.keys())
@@ -147,7 +147,11 @@ class TestTableSet(AgateTestCase):
         tableset3 = TableSet.from_json(filelike)
 
         self.assertSequenceEqual(tableset1.column_names, tableset2.column_names, tableset3.column_names)
-        self.assertSequenceEqual([type(t) for t in tableset1.column_types], [type(t) for t in tableset2.column_types], [type(t) for t in tableset3.column_types])
+        self.assertSequenceEqual(
+            [type(t) for t in tableset1.column_types],
+            [type(t) for t in tableset2.column_types],
+            [type(t) for t in tableset3.column_types]
+        )
 
         self.assertEqual(len(tableset1), len(tableset2), len(tableset3))
 
@@ -161,7 +165,7 @@ class TestTableSet(AgateTestCase):
 
     def test_from_json_false_path(self):
         with self.assertRaises(IOError):
-            tableset1 = TableSet.from_json('notapath')  # noqa
+            TableSet.from_json('notapath')
 
     def test_to_json(self):
         tableset = TableSet(self.tables.values(), self.tables.keys())

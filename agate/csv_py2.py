@@ -6,6 +6,7 @@ This module contains the Python 2 replacement for :mod:`csv`.
 
 import codecs
 import csv
+import warnings
 
 import six
 
@@ -54,7 +55,7 @@ class UnicodeReader(object):
         except csv.Error as e:
             # Terrible way to test for this exception, but there is no subclass
             if 'field larger than field limit' in str(e):
-                raise FieldSizeLimitError(csv.field_size_limit())
+                raise FieldSizeLimitError(csv.field_size_limit(), self.line_num)
             else:
                 raise e
 
@@ -250,7 +251,8 @@ class Sniffer(object):
         """
         try:
             dialect = csv.Sniffer().sniff(sample, POSSIBLE_DELIMITERS)
-        except Exception:
+        except csv.Error as e:
+            warnings.warn('Error sniffing CSV dialect: %s' % e, RuntimeWarning, stacklevel=2)
             dialect = None
 
         return dialect
