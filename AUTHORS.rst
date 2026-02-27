@@ -50,3 +50,4 @@ agate is made by a community. The following individuals have contributed code, d
 * `Scott Gigante <https://github.com/scottgigante>`__
 * `John Paul Martyn <https://github.com/catowhee>`__
 * `Michał Górny <https://github.com/mgorny>`__
+* `Karthik Ramadugu <https://github.com/karthiksai109>`__
